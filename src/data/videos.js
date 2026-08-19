@@ -10,17 +10,16 @@ export const videos = {
     { title: 'Stocks vs ETFs — which is better?', author: 'Graham Stephan', duration: '15 min', youtubeId: 'AqnGWIBITw4' },
   ],
   'Making money': [
-    { title: 'How I made $10k online at 17', author: 'Alex Hormozi', duration: '18 min', youtubeId: 'SqBBsHPGPAU' },
+    { title: 'How I made $100M by 30', author: 'Alex Hormozi', duration: '18 min', youtubeId: 'gIYvr6M0G2E' },
     { title: 'Best side hustles for teenagers', author: 'Sunny Lenarduzzi', duration: '11 min', youtubeId: '5GC6XHFGpVo' },
     { title: 'How to freelance with no experience', author: 'Kalle Hallden', duration: '14 min', youtubeId: 'r5OeADDWBmQ' },
     { title: 'Selling digital products online', author: 'Ali Abdaal', duration: '20 min', youtubeId: '1OhCMQFTdpE' },
   ],
   'Tech & AI': [
-    { title: 'Build your first AI app in one hour', author: 'Fireship', duration: '22 min', youtubeId: 'ng9BpGFY0aA' },
+    { title: 'Build your first AI app in one hour', author: 'Fireship', duration: '22 min', youtubeId: 'ky5ZB-mqZKM' },
     { title: 'How AI is changing everything', author: 'Mark Zuckerberg', duration: '16 min', youtubeId: 'bc6uFV9CJGg' },
     { title: 'Learn to code in 2025', author: 'Traversy Media', duration: '25 min', youtubeId: 'ysEN5RaKOlA' },
-    // NOTE: this ID (dQw4w9WgXcQ) is the Rickroll video, not a real AI tools video — swap when you have the real one
-    { title: 'Best AI tools you need to know', author: 'Matt Wolfe', duration: '13 min', youtubeId: 'dQw4w9WgXcQ' },
+    { title: 'The most useful AI tools right now', author: 'Matt Wolfe', duration: '13 min', youtubeId: 'SlRzTFx8Qtg' },
   ],
   'Building apps': [
     { title: 'Build a React app from scratch', author: 'Traversy Media', duration: '45 min', youtubeId: 'w7ejDZ8SWv8' },
@@ -65,3 +64,5 @@ export function youtubeThumbnail(youtubeId, quality = 'hqdefault') {
 export function youtubeUrl(youtubeId) {
   return `https://www.youtube.com/watch?v=${youtubeId}`;
 }
+
+
