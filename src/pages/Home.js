@@ -101,7 +101,7 @@ export default function Home() {
           {categories.map(cat => {
             const Icon = categoryIcons[cat.name];
             return (
-              <div key={cat.name} onClick={() => navigate(`/category/${cat.name}`)} style={{ background: '#111', border: '0.5px solid #222', borderRadius: 12, padding: 16, cursor: 'pointer' }}>
+              <div key={cat.name} onClick={() => navigate(`/course/${cat.name}`)} style={{ background: '#111', border: '0.5px solid #222', borderRadius: 12, padding: 16, cursor: 'pointer' }}>
                 <div style={{ width: 34, height: 34, borderRadius: 9, background: 'rgba(127,119,221,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
                   <Icon width={18} height={18} style={{ color: '#7F77DD' }} />
                 </div>
