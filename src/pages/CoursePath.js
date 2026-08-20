@@ -29,8 +29,6 @@ export default function CoursePath() {
     return () => unsub();
   }, [name]);
 
-  // First unwatched index is "current" / unlocked. Everything before is completed.
-  // Everything after stays locked until the one before it is watched.
   let currentIndex = 0;
   while (watchedSet.has(currentIndex) && currentIndex < courseVideos.length) {
     currentIndex += 1;
@@ -46,7 +44,7 @@ export default function CoursePath() {
     const state = nodeState(i);
     if (state === 'locked') return;
     if (!user) { navigate('/login'); return; }
-    navigate(`/video/${name}/${i}`);
+    navigate('/video/' + name + '/' + i);
   }
 
   const completedCount = watchedSet.size;
@@ -60,7 +58,7 @@ export default function CoursePath() {
         <div onClick={() => navigate('/')} style={{ fontSize: 18, fontWeight: 500, letterSpacing: '0.08em', color: '#fff', cursor: 'pointer' }}>
           A<span style={{ color: '#7F77DD' }}>.</span>PEX
         </div>
-        <button onClick={() => navigate(`/category/${name}`)} style={{ fontSize: 13, color: '#888', background: 'transparent', border: '0.5px solid #333', padding: '6px 16px', borderRadius: 8, cursor: 'pointer' }}>
+        <button onClick={() => navigate('/category/' + name)} style={{ fontSize: 13, color: '#888', background: 'transparent', border: '0.5px solid #333', padding: '6px 16px', borderRadius: 8, cursor: 'pointer' }}>
           Browse all instead
         </button>
       </nav>
@@ -68,7 +66,7 @@ export default function CoursePath() {
       <div style={{ maxWidth: 560, margin: '0 auto', padding: '40px 40px 100px' }}>
         <div style={{ fontSize: 11, color: '#7F77DD', letterSpacing: '0.08em', marginBottom: 10 }}>COURSE</div>
         <h1 style={{ fontSize: 32, fontWeight: 500, color: '#fff', marginBottom: 8 }}>{name}</h1>
-        <p style={{ fontSize: 14, color: '#555', marginBottom: 20 }}>{categoryMeta[name]?.description || ''}</p>
+        <p style={{ fontSize: 14, color: '#555', marginBottom: 20 }}>{categoryMeta[name] ? categoryMeta[name].description : ''}</p>
 
         <div style={{ marginBottom: 48 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#666', marginBottom: 8 }}>
@@ -76,7 +74,7 @@ export default function CoursePath() {
             <span>{pct}%</span>
           </div>
           <div style={{ height: 6, background: '#1a1a1a', borderRadius: 3, overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: `${pct}%`, background: '#7F77DD', borderRadius: 3, transition: 'width 0.3s' }} />
+            <div style={{ height: '100%', width: pct + '%', background: '#7F77DD', borderRadius: 3, transition: 'width 0.3s' }} />
           </div>
         </div>
 
@@ -97,6 +95,7 @@ export default function CoursePath() {
             const circleColor = state === 'completed' ? '#7F77DD' : state === 'current' ? '#0a0a0a' : '#141414';
             const circleBorder = state === 'locked' ? '0.5px solid #262626' : '2px solid #7F77DD';
             const textColor = state === 'locked' ? '#3a3a3a' : '#fff';
+            const nodeLabel = state === 'completed' ? 'DONE' : state === 'locked' ? 'LOCKED' : String(i + 1);
 
             return (
               <div key={i} style={{ display: 'flex', justifyContent: align, marginBottom: isLast ? 0 : 28, position: 'relative' }}>
@@ -126,14 +125,14 @@ export default function CoursePath() {
                     width: 60, height: 60, borderRadius: '50%',
                     background: circleColor, border: circleBorder,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 20, color: state === 'locked' ? '#3a3a3a' : '#fff',
-                    flexShrink: 0,
+                    fontSize: state === 'completed' || state === 'locked' ? 9 : 20, color: state === 'locked' ? '#3a3a3a' : '#fff',
+                    flexShrink: 0, fontWeight: 600, letterSpacing: '0.03em',
                   }}>
-                    {state === 'completed' ? 'âœ“' : state === 'locked' ? 'ðŸ”’' : i + 1}
+                    {nodeLabel}
                   </div>
                   <div style={{ textAlign: align === 'flex-end' ? 'right' : 'left' }}>
                     <div style={{ fontSize: 14, color: textColor, marginBottom: 3, lineHeight: 1.3 }}>{v.title}</div>
-                    <div style={{ fontSize: 11, color: state === 'locked' ? '#333' : '#666' }}>{v.author} Â· {v.duration}</div>
+                    <div style={{ fontSize: 11, color: state === 'locked' ? '#333' : '#666' }}>{v.author} - {v.duration}</div>
                   </div>
                 </div>
               </div>
@@ -143,7 +142,6 @@ export default function CoursePath() {
 
         {completedCount === total && total > 0 && (
           <div style={{ marginTop: 48, textAlign: 'center', background: '#111', border: '0.5px solid #7F77DD', borderRadius: 12, padding: 24 }}>
-            <div style={{ fontSize: 24, marginBottom: 8 }}>ðŸŽ‰</div>
             <div style={{ fontSize: 15, color: '#fff', marginBottom: 4 }}>Course complete!</div>
             <div style={{ fontSize: 13, color: '#666' }}>You finished every video in {name}.</div>
           </div>
