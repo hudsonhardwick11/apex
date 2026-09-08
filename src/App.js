@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Category from './pages/Category';
 import CoursePath from './pages/CoursePath';
+import FullPath from './pages/FullPath';
 import VideoPage from './pages/VideoPage';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/category/:name" element={<Category />} />
         <Route path="/course/:name" element={<CoursePath />} />
+        <Route path="/full-path" element={<FullPath />} />
         <Route path="/video/:category/:index" element={<VideoPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

@@ -4,6 +4,8 @@ import { auth, db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { videos, categoryMeta } from '../data/videos';
+import { color, font } from '../theme';
+import AiTutor from '../components/AiTutor';
 
 export default function CoursePath() {
   const { name } = useParams();
@@ -52,36 +54,36 @@ export default function CoursePath() {
   const pct = total > 0 ? Math.round((completedCount / total) * 100) : 0;
 
   return (
-    <div style={{ background: '#0a0a0a', minHeight: '100vh', fontFamily: 'sans-serif' }}>
+    <div style={{ background: color.bg, minHeight: '100vh', fontFamily: font.body }}>
 
-      <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 40px', borderBottom: '0.5px solid #222' }}>
-        <div onClick={() => navigate('/')} style={{ fontSize: 18, fontWeight: 500, letterSpacing: '0.08em', color: '#fff', cursor: 'pointer' }}>
-          A<span style={{ color: '#7F77DD' }}>.</span>PEX
+      <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 40px', borderBottom: '1px solid ' + color.border }}>
+        <div onClick={() => navigate('/')} style={{ fontFamily: font.display, fontSize: 20, fontWeight: 600, letterSpacing: '0.04em', color: color.textPrimary, cursor: 'pointer', textTransform: 'uppercase' }}>
+          A<span style={{ color: color.gold }}>.</span>PEX
         </div>
-        <button onClick={() => navigate('/category/' + name)} style={{ fontSize: 13, color: '#888', background: 'transparent', border: '0.5px solid #333', padding: '6px 16px', borderRadius: 8, cursor: 'pointer' }}>
+        <button onClick={() => navigate('/category/' + name)} style={{ fontSize: 13, color: color.textSecondary, background: 'transparent', border: '1px solid ' + color.border, padding: '7px 16px', borderRadius: 6, cursor: 'pointer' }}>
           Browse all instead
         </button>
       </nav>
 
-      <div style={{ maxWidth: 560, margin: '0 auto', padding: '40px 40px 100px' }}>
-        <div style={{ fontSize: 11, color: '#7F77DD', letterSpacing: '0.08em', marginBottom: 10 }}>COURSE</div>
-        <h1 style={{ fontSize: 32, fontWeight: 500, color: '#fff', marginBottom: 8 }}>{name}</h1>
-        <p style={{ fontSize: 14, color: '#555', marginBottom: 20 }}>{categoryMeta[name] ? categoryMeta[name].description : ''}</p>
+      <div style={{ maxWidth: 560, margin: '0 auto', padding: '48px 40px 100px' }}>
+        <div style={{ fontFamily: font.mono, fontSize: 11, letterSpacing: '0.12em', color: color.gold, marginBottom: 12 }}>COURSE</div>
+        <h1 style={{ fontFamily: font.display, fontSize: 38, fontWeight: 600, color: color.textPrimary, marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.01em' }}>{name}</h1>
+        <p style={{ fontSize: 14, color: color.textMuted, marginBottom: 24, lineHeight: 1.5 }}>{categoryMeta[name] ? categoryMeta[name].description : ''}</p>
 
-        <div style={{ marginBottom: 48 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#666', marginBottom: 8 }}>
-            <span>{completedCount} of {total} complete</span>
-            <span>{pct}%</span>
+        <div style={{ marginBottom: 52 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: font.mono, fontSize: 11, color: color.textSecondary, marginBottom: 8, letterSpacing: '0.04em' }}>
+            <span>{completedCount} OF {total} COMPLETE</span>
+            <span style={{ color: color.gold }}>{pct}%</span>
           </div>
-          <div style={{ height: 6, background: '#1a1a1a', borderRadius: 3, overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: pct + '%', background: '#7F77DD', borderRadius: 3, transition: 'width 0.3s' }} />
+          <div style={{ height: 5, background: color.surface, borderRadius: 3, overflow: 'hidden', border: '1px solid ' + color.border }}>
+            <div style={{ height: '100%', width: pct + '%', background: color.gold, borderRadius: 3, transition: 'width 0.3s' }} />
           </div>
         </div>
 
         {!user && !loading && (
-          <div style={{ background: '#111', border: '0.5px solid #222', borderRadius: 12, padding: 20, marginBottom: 40, textAlign: 'center' }}>
-            <p style={{ fontSize: 13, color: '#777', marginBottom: 12 }}>Sign in to save your progress on this course</p>
-            <button onClick={() => navigate('/login')} style={{ background: '#7F77DD', color: '#fff', border: 'none', padding: '8px 20px', borderRadius: 8, fontSize: 13, cursor: 'pointer' }}>
+          <div style={{ background: color.surface, border: '1px solid ' + color.border, borderRadius: 8, padding: 22, marginBottom: 44, textAlign: 'center' }}>
+            <p style={{ fontSize: 13, color: color.textSecondary, marginBottom: 14 }}>Sign in to save your progress on this course</p>
+            <button onClick={() => navigate('/login')} style={{ fontFamily: font.display, fontWeight: 500, letterSpacing: '0.02em', textTransform: 'uppercase', background: color.gold, color: '#0B0D10', border: 'none', padding: '9px 22px', borderRadius: 6, fontSize: 13, cursor: 'pointer' }}>
               Log in
             </button>
           </div>
@@ -92,22 +94,22 @@ export default function CoursePath() {
             const state = nodeState(i);
             const align = i % 2 === 0 ? 'flex-start' : 'flex-end';
             const isLast = i === courseVideos.length - 1;
-            const circleColor = state === 'completed' ? '#7F77DD' : state === 'current' ? '#0a0a0a' : '#141414';
-            const circleBorder = state === 'locked' ? '0.5px solid #262626' : '2px solid #7F77DD';
-            const textColor = state === 'locked' ? '#3a3a3a' : '#fff';
-            const nodeLabel = state === 'completed' ? 'DONE' : state === 'locked' ? 'LOCKED' : String(i + 1);
+            const badgeFill = state === 'completed' ? color.sage : state === 'current' ? color.bg : color.surface;
+            const badgeBorder = state === 'locked' ? color.border : state === 'completed' ? color.sage : color.gold;
+            const textColor = state === 'locked' ? color.textFaint : color.textPrimary;
+            const nodeLabel = state === 'completed' ? 'DONE' : state === 'locked' ? 'LOCKED' : String(i + 1).padStart(2, '0');
 
             return (
-              <div key={i} style={{ display: 'flex', justifyContent: align, marginBottom: isLast ? 0 : 28, position: 'relative' }}>
+              <div key={i} style={{ display: 'flex', justifyContent: align, marginBottom: isLast ? 0 : 30, position: 'relative' }}>
                 {!isLast && (
                   <div style={{
                     position: 'absolute',
-                    top: 60,
+                    top: 62,
                     left: align === 'flex-start' ? 29 : undefined,
                     right: align === 'flex-end' ? 29 : undefined,
                     width: 2,
-                    height: 28,
-                    background: state === 'completed' ? '#7F77DD' : '#1e1e1e',
+                    height: 30,
+                    background: state === 'completed' ? color.sage : color.border,
                   }} />
                 )}
                 <div
@@ -115,24 +117,34 @@ export default function CoursePath() {
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 14,
+                    gap: 16,
                     cursor: state === 'locked' ? 'default' : 'pointer',
-                    maxWidth: 340,
+                    maxWidth: 350,
                     flexDirection: align === 'flex-end' ? 'row-reverse' : 'row',
                   }}
                 >
                   <div style={{
-                    width: 60, height: 60, borderRadius: '50%',
-                    background: circleColor, border: circleBorder,
+                    width: 60, height: 60,
+                    background: badgeFill,
+                    border: '2px solid ' + badgeBorder,
+                    transform: 'rotate(45deg)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: state === 'completed' || state === 'locked' ? 9 : 20, color: state === 'locked' ? '#3a3a3a' : '#fff',
-                    flexShrink: 0, fontWeight: 600, letterSpacing: '0.03em',
+                    flexShrink: 0,
+                    boxShadow: state === 'current' ? '0 0 0 4px ' + color.goldMuted : 'none',
                   }}>
-                    {nodeLabel}
+                    <span style={{
+                      transform: 'rotate(-45deg)',
+                      fontFamily: font.mono, fontWeight: 500,
+                      fontSize: state === 'completed' || state === 'locked' ? 8 : 18,
+                      color: state === 'locked' ? color.textFaint : state === 'completed' ? '#0B0D10' : color.gold,
+                      letterSpacing: '0.02em',
+                    }}>
+                      {nodeLabel}
+                    </span>
                   </div>
                   <div style={{ textAlign: align === 'flex-end' ? 'right' : 'left' }}>
-                    <div style={{ fontSize: 14, color: textColor, marginBottom: 3, lineHeight: 1.3 }}>{v.title}</div>
-                    <div style={{ fontSize: 11, color: state === 'locked' ? '#333' : '#666' }}>{v.author} - {v.duration}</div>
+                    <div style={{ fontSize: 14, color: textColor, marginBottom: 4, lineHeight: 1.3 }}>{v.title}</div>
+                    <div style={{ fontFamily: font.mono, fontSize: 10, color: state === 'locked' ? color.textFaint : color.textMuted, letterSpacing: '0.03em' }}>{v.author.toUpperCase()} - {v.duration}</div>
                   </div>
                 </div>
               </div>
@@ -141,12 +153,14 @@ export default function CoursePath() {
         </div>
 
         {completedCount === total && total > 0 && (
-          <div style={{ marginTop: 48, textAlign: 'center', background: '#111', border: '0.5px solid #7F77DD', borderRadius: 12, padding: 24 }}>
-            <div style={{ fontSize: 15, color: '#fff', marginBottom: 4 }}>Course complete!</div>
-            <div style={{ fontSize: 13, color: '#666' }}>You finished every video in {name}.</div>
+          <div style={{ marginTop: 52, textAlign: 'center', background: color.sageMuted, border: '1px solid ' + color.sage, borderRadius: 8, padding: 26 }}>
+            <div style={{ fontFamily: font.display, fontSize: 16, color: color.textPrimary, marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.02em' }}>Summit reached</div>
+            <div style={{ fontSize: 13, color: color.textSecondary }}>You finished every video in {name}.</div>
           </div>
         )}
       </div>
+
+      <AiTutor category={name} />
     </div>
   );
 }
