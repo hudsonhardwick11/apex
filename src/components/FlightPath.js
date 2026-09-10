@@ -3,7 +3,7 @@ import { categoryIcons } from '../icons';
 import { color, font, shadow } from '../theme';
 import { CanyonFlight, cameraAt } from './Backdrop';
 
-const STOP_VH_FACTOR = 0.55;
+const STOP_VH_FACTOR = 0.72;
 
 export default function FlightPath({ categories, onSelect }) {
   const containerRef = useRef(null);
@@ -33,7 +33,7 @@ export default function FlightPath({ categories, onSelect }) {
       // Higher blend weight on new impulse = more responsive feel
       // Multiplier 2.2 means each scroll tick punches harder so
       // you need fewer ticks to get momentum — makes it feel effortless
-      velRef.current = velRef.current * 0.55 + impulse * 2.2;
+      velRef.current = velRef.current * 0.6 + impulse * 1.4;
     };
 
     const tick = () => {
