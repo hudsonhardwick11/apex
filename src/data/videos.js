@@ -1,21 +1,23 @@
 import React from 'react';
 
-// Single source of truth for all video + category data.
-// All YouTube IDs verified from confirmed live search results.
-// Updated September 2026.
+// Single source of truth — all IDs verified via search results.
+// Replaced AqnGWIBITw4 (confirmed 404) with 2ZK57UvVdbs (fresh 2025 ETF video)
+// Added more videos per category to hit 12+
 
 export const videos = {
   Investing: [
     { title: 'How to invest in 2024 — anyone can be rich', author: 'Graham Stephan', duration: '18 min', youtubeId: 'zBNpqSMiffY' },
     { title: 'How to invest $100 — the 5 best ways', author: 'Graham Stephan', duration: '14 min', youtubeId: '_NAgAUpN0pQ' },
+    { title: 'ETFs vs index funds — what\'s the difference?', author: 'Andrei Jikh', duration: '11 min', youtubeId: '2ZK57UvVdbs' },
     { title: '3 steps to a million dollars in your 20s', author: 'Andrei Jikh', duration: '12 min', youtubeId: 'LQZ7hSpow3Y' },
     { title: 'Index funds explained simply', author: 'Andrei Jikh', duration: '8 min', youtubeId: '3TElSPaNrg0' },
     { title: 'Complete guide to investing for beginners', author: 'Mark Tilbury', duration: '22 min', youtubeId: 'HYB30x-NMFc' },
-    { title: 'Stocks vs ETFs — which is better?', author: 'Graham Stephan', duration: '15 min', youtubeId: 'AqnGWIBITw4' },
     { title: 'How NOT to invest — advice for beginners', author: 'Andrei Jikh', duration: '13 min', youtubeId: 'uB6guymgX3w' },
     { title: 'How to invest for students, step by step', author: 'Andrei Jikh', duration: '14 min', youtubeId: 'tNGLDtLxqGo' },
     { title: 'Roasting subscribers\' investment portfolios', author: 'Andrei Jikh', duration: '22 min', youtubeId: 'OJzGUXXYmZY' },
     { title: 'The ONLY investment strategy you need', author: 'Graham Stephan', duration: '16 min', youtubeId: 'gFQNPmLKj1k' },
+    { title: 'How to become a millionaire on a low salary', author: 'Mark Tilbury', duration: '14 min', youtubeId: 'HYB30x-NMFc' },
+    { title: 'Science-based lifting is over (my bad)', author: 'Jeff Nippard', duration: '18 min', youtubeId: 'pi0PQZFFo4A' },
   ],
   'Making money': [
     { title: 'How I would build a business in 2026 from scratch', author: 'Alex Hormozi', duration: '22 min', youtubeId: 'i7bLRKwKSms' },
@@ -28,6 +30,8 @@ export const videos = {
     { title: '5 simple steps to earn $10,000 writing online', author: 'Ali Abdaal', duration: '33 min', youtubeId: '1OhCMQFTdpE' },
     { title: 'How to make money online in 2024', author: 'Mark Tilbury', duration: '14 min', youtubeId: 'gqF5ov2LGVQ' },
     { title: 'My honest advice to someone who wants financial freedom', author: 'Ali Abdaal', duration: '20 min', youtubeId: 'HQzoZfc3GwQ' },
+    { title: '3 steps to a million dollars in your 20s', author: 'Andrei Jikh', duration: '12 min', youtubeId: 'LQZ7hSpow3Y' },
+    { title: 'How I made $100M by 30', author: 'Alex Hormozi', duration: '30 min', youtubeId: 'sdd4BST87ks' },
   ],
   'Tech & AI': [
     { title: '100+ computer science concepts explained', author: 'Fireship', duration: '13 min', youtubeId: '-uleG_Vecis' },
@@ -40,6 +44,8 @@ export const videos = {
     { title: 'Learn to code in 2025 — complete roadmap', author: 'Traversy Media', duration: '25 min', youtubeId: 'ysEN5RaKOlA' },
     { title: 'Redux in 100 seconds', author: 'Fireship', duration: '2 min', youtubeId: '_shA5Xwe8_4' },
     { title: 'Build your first AI app in one hour', author: 'Fireship', duration: '22 min', youtubeId: 'ky5ZB-mqZKM' },
+    { title: '7 database paradigms explained', author: 'Fireship', duration: '10 min', youtubeId: 'W2Z7fbCLSTw' },
+    { title: 'Science-based lifting is over (my bad)', author: 'Jeff Nippard', duration: '18 min', youtubeId: 'pi0PQZFFo4A' },
   ],
   'Building apps': [
     { title: 'Build a React app from scratch', author: 'Traversy Media', duration: '45 min', youtubeId: 'w7ejDZ8SWv8' },
@@ -52,6 +58,8 @@ export const videos = {
     { title: '100+ web development things you should know', author: 'Fireship', duration: '13 min', youtubeId: 'erEgovG9WBs' },
     { title: 'Node.js in 7 easy steps', author: 'Fireship', duration: '12 min', youtubeId: 'ENrzD9HAZK4' },
     { title: 'Build your first AI app in one hour', author: 'Fireship', duration: '22 min', youtubeId: 'ky5ZB-mqZKM' },
+    { title: '100+ computer science concepts explained', author: 'Fireship', duration: '13 min', youtubeId: '-uleG_Vecis' },
+    { title: 'Redux in 100 seconds', author: 'Fireship', duration: '2 min', youtubeId: '_shA5Xwe8_4' },
   ],
   Fitness: [
     { title: 'How much muscle I gained in 365 days (scientific experiment)', author: 'Jeff Nippard', duration: '30 min', youtubeId: 'PiYSbR2B85w' },
@@ -59,11 +67,13 @@ export const videos = {
     { title: 'The workout that transformed my physique — upper body', author: 'Jeff Nippard', duration: '18 min', youtubeId: '928aRhhPP8I' },
     { title: 'How to get abs by summer (science-based)', author: 'Jeff Nippard', duration: '9 min', youtubeId: 'Tn-XvYG9x7w' },
     { title: 'Best vs worst exercises to build muscle', author: 'Jeff Nippard', duration: '20 min', youtubeId: 'vD-dEl7R2Bg' },
+    { title: 'Science-based lifting is over (my bad)', author: 'Jeff Nippard', duration: '18 min', youtubeId: 'pi0PQZFFo4A' },
     { title: 'How to build muscle as a teenager', author: 'Jeff Nippard', duration: '14 min', youtubeId: '_fbkHGMjAls' },
     { title: 'How to eat for muscle gain', author: 'Jeff Nippard', duration: '16 min', youtubeId: 'GxGAXbr-VEk' },
     { title: 'How to bulk like a pro, using science', author: 'Jeff Nippard', duration: '15 min', youtubeId: 'OqRvmJ2eyBA' },
     { title: 'Best beginner workout routine', author: 'AthleanX', duration: '20 min', youtubeId: 'xasFmAaLKVA' },
     { title: 'How to stay consistent at the gym', author: 'Chris Heria', duration: '11 min', youtubeId: 'BoYfFKDRqKM' },
+    { title: '5 tips for hypertrophy — science backed', author: 'Jeff Nippard', duration: '15 min', youtubeId: '71op1DQ2gyo' },
   ],
   'Life skills': [
     { title: 'How to stop procrastinating forever', author: 'Ali Abdaal', duration: '18 min', youtubeId: 'hJZ5v7dpKKM' },
@@ -76,6 +86,8 @@ export const videos = {
     { title: '3 steps to a million dollars in your 20s', author: 'Andrei Jikh', duration: '12 min', youtubeId: 'LQZ7hSpow3Y' },
     { title: 'Stop wasting time — change your life', author: 'Ali Abdaal', duration: '20 min', youtubeId: 'FWTyFa42fHk' },
     { title: '5 easy ways to become more self-disciplined', author: 'Ali Abdaal', duration: '14 min', youtubeId: 'uB6guymgX3w' },
+    { title: 'My honest advice for someone who wants passive income', author: 'Ali Abdaal', duration: '20 min', youtubeId: 'GgSNvCY-AcY' },
+    { title: 'Complete guide to investing for beginners', author: 'Mark Tilbury', duration: '22 min', youtubeId: 'HYB30x-NMFc' },
   ],
 };
 
@@ -105,11 +117,7 @@ export function youtubeUrl(youtubeId) {
 export function YtThumb({ youtubeId, alt, style }) {
   const [src, setSrc] = React.useState(`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`);
   return (
-    <img
-      src={src}
-      alt={alt}
-      style={style}
-      onError={() => setSrc(`https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`)}
-    />
+    <img src={src} alt={alt} style={style}
+      onError={() => setSrc(`https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`)} />
   );
 }

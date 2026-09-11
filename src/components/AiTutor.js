@@ -1,4 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { db, auth } from '../firebase';
+import { doc, setDoc, getDoc, increment } from 'firebase/firestore';
+import { useSubscription, FREE_QUESTIONS_PER_DAY } from '../hooks/useSubscription';
 import { color, font, shadow } from '../theme';
 
 // Video-specific knowledge base — what each video actually covers so the
